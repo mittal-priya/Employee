@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Storage } from '@ionic/storage';
 
 @Injectable({
@@ -27,8 +26,8 @@ export class DataService {
             }else if(json.role == "Manager"){
             this.router.navigate(['/manager']);
             }
-        }else{
-          alert("username and password don't match")
+        }else if(element.user == json.user && element.password == json.password && element.role == json.role){
+          // alert("username and password don't match")
         }
     });
      })
