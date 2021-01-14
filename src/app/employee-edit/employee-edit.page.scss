@@ -1,0 +1,36 @@
+ion-content{
+    --background: #fff;
+}
+
+ion-toolbar{
+    --background: #3880ff;
+    color: #fff;
+    text-align: center;
+}
+
+.wrapper{
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.wrapper .item{
+  min-width: max-content;
+  height: auto;
+  text-align: center;
+  font-size: 18px;
+}
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .col, .col-2, .col-3{
+  border: 1.2px solid black;  
+  }
+  .text{
+    width: 100px;
+  }
+  .text2{
+    width: 140px;
+  }
+  .hint{
+    text-align: center;
+  }

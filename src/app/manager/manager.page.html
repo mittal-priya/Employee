@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manager</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="container-fluid ion-padding-top">
+  <div class='wrapper'>
+  <div class="item">
+   <div class="row ion-padding-start">
+     <div class="col">
+       <ion-label class="text">EmpId</ion-label>
+     </div>
+     <div class="col">
+       <ion-label class="text">EmpName</ion-label>
+     </div>  
+     <div class="col">
+       <ion-label class="text2">Project Name</ion-label>
+     </div>
+     <div class="col">
+       <ion-label class="text">Rating</ion-label>
+     </div>    
+     <div class="col">
+      <ion-label class="text2">Comments</ion-label>
+    </div>  
+    <div class="col">
+      <ion-label class="text">mgrRating</ion-label>
+    </div>  
+    <div class="col">
+      <ion-label class="text2">mgrComments</ion-label>
+    </div>  
+    <div class="col">
+      <ion-label class="text">Action</ion-label>
+    </div>  
+   </div>
+   <div class="row ion-padding-start" *ngFor='let data of loop'>
+    <div class="col">
+      <ion-label class="text">{{data.empid}}</ion-label>
+    </div>
+    <div class="col">
+      <ion-label class="text">{{data.empname}}</ion-label>
+    </div>  
+    <div class="col">
+      <ion-label class="text2">{{data.projectname}}</ion-label>
+    </div>
+    <div class="col">
+      <ion-label class="text">{{data.rating}}</ion-label>
+    </div>    
+    <div class="col">
+     <ion-label class="text2">{{data.comments}}</ion-label>
+   </div>  
+   <div class="col">
+     <ion-label class="text">{{data.mgrrating}}</ion-label>
+   </div>  
+   <div class="col">
+     <ion-label class="text2">{{data.mgrcomment}}</ion-label>
+   </div>  
+   <div class="col">
+    <ion-icon name="create-outline" (click)="edit(data)"></ion-icon>
+    <ion-icon name="trash-outline" style="margin-left: 25px;" (click)="del(data)"></ion-icon>
+   </div>  
+  </div>
+  </div>
+   </div>
+ </div>
+ 
+</ion-content>

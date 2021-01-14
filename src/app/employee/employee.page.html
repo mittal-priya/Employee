@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Employee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]='show'>
+    <ion-segment-button value='feedback'>
+      <ion-label>New Feedback</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value='list'>
+      <ion-label>List</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="show == 'feedback'">
+
+    <form [formGroup]="authForm" (ngSubmit)="insertList()" style="width: 100%;">
+      <ion-row class="ion-margin-top ion-margin-bottom">
+        <ion-col >
+          <ion-item lines='none'>
+            <ion-label>EmpName*</ion-label>
+            <ion-input  type="text" formControlName="name" [appIonicInput]="myStyles"
+            ></ion-input>  
+            <span style="color:red" *ngIf="authForm.controls.name.hasError('required') &&  authForm.controls.name.touched">
+              EmpName is required!</span>
+          </ion-item>
+          <ion-item lines='none'>
+            <ion-label>EmpId*</ion-label>
+          <ion-input type="text" formControlName="EmpId"></ion-input>
+          <span style="color:red" *ngIf="authForm.controls.EmpId.hasError('required') &&  authForm.controls.EmpId.touched">
+            EmpId is required!</span>
+          </ion-item>
+            <ion-item lines='none'>
+              <ion-label >Project*</ion-label>
+            <ion-input type="text" formControlName="Project"></ion-input>
+            <span style="color:red" *ngIf="authForm.controls.Project.hasError('required') &&  authForm.controls.Project.touched">
+              Project is required!</span>
+            </ion-item>
+          <ion-item lines="none">
+            <ion-label>Rating*</ion-label>
+            <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" (click)="rate(num)" [ngStyle]="{'color':getColor(num)}"></ion-icon>
+          </ion-item>
+            <ion-item lines='none'>
+              <ion-label>Comments*</ion-label>
+            <ion-input type="text" formControlName="comment"></ion-input>
+            <span style="color:red" *ngIf="authForm.controls.comment.hasError('required') &&  authForm.controls.comment.touched">
+              Project is required!</span>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-align-items-center ion-margin-top ion-padding-top ion-margin-bottom">
+          <ion-button type="submit" class="sub" [disabled]="!authForm.valid">
+            <span >Save</span>
+          </ion-button>
+      </ion-row>  
+      <p *ngIf="myStyles.showUsername" class="hint">
+        You are typing username
+      </p>
+        </form>
+  </div>
+  <div *ngIf="show == 'list'">
+    <div class="container-fluid ion-padding-top">
+      <div class='wrapper'>
+      <div class="item">
+       <div class="row ion-padding-start">
+         <div class="col">
+           <ion-label class="text">EmpId</ion-label>
+         </div>
+         <div class="col">
+           <ion-label class="text">EmpName</ion-label>
+         </div>  
+         <div class="col">
+           <ion-label class="text2">Project Name</ion-label>
+         </div>
+         <div class="col">
+           <ion-label class="text">Rating</ion-label>
+         </div>    
+         <div class="col">
+          <ion-label class="text2">Comments</ion-label>
+        </div>  
+        <div class="col">
+          <ion-label class="text">mgrRating</ion-label>
+        </div>  
+        <div class="col">
+          <ion-label class="text2">mgrComments</ion-label>
+        </div>  
+        <div class="col">
+          <ion-label class="text">Action</ion-label>
+        </div>  
+       </div>
+       <div class="row ion-padding-start" *ngFor='let data of loop'>
+        <div class="col">
+          <ion-label class="text">{{data.empid}}</ion-label>
+        </div>
+        <div class="col">
+          <ion-label class="text">{{data.empname}}</ion-label>
+        </div>  
+        <div class="col">
+          <ion-label class="text2">{{data.projectname}}</ion-label>
+        </div>
+        <div class="col">
+          <ion-label class="text">{{data.rating}}</ion-label>
+        </div>    
+        <div class="col">
+         <ion-label class="text2">{{data.comments}}</ion-label>
+       </div>  
+       <div class="col">
+         <ion-label class="text">{{data.mgrrating}}</ion-label>
+       </div>  
+       <div class="col">
+         <ion-label class="text2">{{data.mgrcomment}}</ion-label>
+       </div>  
+       <div class="col" *ngIf="data.mgrcomment == null">
+        <ion-icon name="create-outline" (click)="edit(data)"></ion-icon>
+        <ion-icon name="trash-outline" style="margin-left: 25px;" (click)="del(data)"></ion-icon>
+       </div>  
+       <div class="col" *ngIf="data.mgrcomment != null">
+       </div> 
+      </div>
+      </div>
+       </div>
+     </div>
+  </div>
+</ion-content>
+
